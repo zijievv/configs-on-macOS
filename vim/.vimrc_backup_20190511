@@ -1,0 +1,213 @@
+set nocompatible		" be iMproved, required
+filetype off			" required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"-------------------------------------------------
+" alternatively, pass a path where Vundle should install plugins
+" call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+""Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" indentline 锁进指示线
+Plugin 'Yggdroot/indentLine'
+" indentline
+" support any ascii-code (only utf-8)
+let g:indentLint_char='¦' 
+" turn on indentline
+let g:indentLine_enabled = 1
+
+" NERDTree
+Plugin 'scrooloose/nerdtree'
+
+" Python 缩进 PEP8
+Plugin 'vim-scripts/indentpython.vim'
+" Python auto form PEP8
+Plugin 'tell-k/vim-autopep8'
+
+" 按照PEP8标准来配置vim
+au BufNewFile,BufRead *.py set tabstop=4 |set softtabstop=4|set shiftwidth=4|set expandtab|set autoindent|set fileformat=unix
+" set textwidth=70
+"在使用macvim编辑*.py文件时：
+
+"代码自动按照PEP8规则进行缩进；
+"tap键相当于4个标准空格，每行代码不超过80字符；
+"使用:Autopep8命令或者F8快捷键自动按照PEP8标准格式化python代码
+"在使用macvim编辑*.js, *.html, *.css文件时,tap键相当于2个标准空格
+
+" setting of vim-autopep8
+" Disable show diff window
+let g:autopep8_disable_show_diff=1
+" vim-autopep8自1.11版本之后取消了F8快捷键，需要用户自己为:Autopep8设置快捷键：
+autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+
+" 代码检查工具 ale
+Plugin 'w0rp/ale'
+
+" Swift 语法高亮
+Plugin 'keith/swift.vim'
+
+" YouCompleteMe
+Plugin 'Valloric/YouCompleteMe'
+
+" 自动补全括号
+Plugin 'jiangmiao/auto-pairs'
+
+
+"-------------------------------------------------
+" All of your Plugins must be added before the following line
+call vundle#end()			" required
+filetype plugin indent on	" required
+
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+
+" Don't write backup file if vim is being called by "crontab -e"
+au BufWrite /private/tmp/crontab.* set nowritebackup nobackup
+" Don't write backup file if vim is being called by "chpass"
+au BufWrite /private/etc/pw.* set nowritebackup nobackup
+
+
+"--------------======= PERSONAL =======--------------
+
+set backspace=indent,eol,start
+set backspace=2
+filetype on
+filetype plugin indent on 
+filetype indent on
+filetype plugin on
+
+if has("gui_running") 
+    augroup RCVisual 
+     autocmd! 
+     autocmd GUIEnter * colorscheme gruvbox 
+    augroup END 
+else
+    colorscheme gruvbox    
+end
+
+"UI
+set t_Co=256
+"colorscheme gruvbox
+set guifont=Menlo:h14
+set number "显示行号
+set ruler
+set cursorline
+set cursorcolumn
+syntax enable
+syntax on
+set showmatch
+set matchtime=3
+set scrolloff=2
+"set guicursor=hor{1} " 光标形状
+"set lines=35 columns=118
+"winpos 117 51	"position when startup
+
+"decode
+set fenc=utf-8
+"set fencs=utf-8,usc-bom,euc-jp,gb18030,gb2312,cp936
+
+"backup
+set autoread
+set autowrite
+set confirm
+set nobackup
+setlocal noswapfile
+
+"operation
+set clipboard+=unnamed
+set showcmd
+set iskeyword+=_,$,@,%,#,-
+"set noexpandtab
+set tabstop=4
+set ts=4
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set mouse=a
+"set autoindent
+"set smartindent
+set wrap "自动折行
+
+"search
+set ignorecase smartcase
+set hlsearch
+set incsearch
+set history=1000
+
+"edit
+"set spell spelllang=en_us "英语单词拼写检查
+
+
+"--------------======= For plugins =======--------------
+
+" Python-mode
+" For plugin Python-mode
+let g:pymode_python = 'python3'
+let g:pymode_lint_checkers = ['pyflakes']
+let g:pymode_trim_whitespaces = 1
+let g:pymode_options = 0
+"let g:pymode_rope = 0
+let g:pymode_lint_cwindow = 0
+" 缩进风格为 pep8
+let g:pymode_indent = 1
+" 不使用折叠功能
+let g:pymode_folding = 0
+let g:pymode_options_colorcolumn = 1
+" 自动加入断点语句
+"let g:pymode_breakpoint_bind = '<leader>br'
+
+
+" ale
+" 代码检查工具 ale
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+let g:ale_sign_column_always = 1
+let g:airline#extensions#ale#enabled = 1
+
+"YouCompleteMe
+set completeopt=longest,menu                    " 让Vim的补全菜单行为与一般IDE
+let g:ycm_min_num_of_chars_for_completion=2             " 从第2个键入字符就开始罗列匹配项
+let g:ycm_cache_omnifunc=0                      " 禁止缓存匹配项,每次都重新生成匹配项
+let g:ycm_autoclose_preview_window_after_completion=1       " 智能关闭自动补全窗口
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif         " 离开插入模式后自动关闭预览窗口
+" 开启各种补全引擎
+let g:ycm_collect_identifiers_from_tags_files=1         " 开启 YCM 基于标签引擎
+let g:ycm_auto_trigger = 1                  " 开启 YCM 基于标识符补全，默认为1
+let g:ycm_seed_identifiers_with_syntax=1                " 开启 YCM 基于语法关键字补全
+let g:ycm_complete_in_comments = 1              " 在注释输入中也能补全
+let g:ycm_complete_in_strings = 1               " 在字符串输入中也能补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 0 " 注释和字符串中的文字也会被收入补全
+let g:ycm_confirm_extra_conf=0                  " 关闭加载.ycm_extra_conf.py确认提示
+
+" jiangmiao/auto-pairs
+
+
+
