@@ -1,0 +1,148 @@
+#
+# Configuration file for swiftformat
+# Install swift format tool by Homebrew: `brew install swiftformat`
+#
+
+# RULES
+#
+# 1. Prefer comma over `&&` in `if`, `guard` or `while` conditions
+# 2. Remove trailing blank line at the end of a scope
+# 3. Remove leading blank line at the start of a scope
+--rules andOperator, blankLinesAtEndOfScope, blankLinesAtStartOfScope
+# 4. Insert blank line before class, struct, enum, extension, protocol or 
+# function declarations.
+# 5. Wrap braces in accordance with selected style (K&R or Allman)
+--rules blankLinesBetweenScopes, braces, 
+# 6. Replace consecutive blank lines with a single blank line
+# 7. Replace consecutive spaces with a single space
+--rules consecutiveBlankLines, consecutiveSpaces
+# 8. Remove duplicate import statements
+# 9. Place `else`, `catch` or `while` keyword in accordance with current style
+# (same or next line)
+# 10. Remove whitespace inside empty braces
+# 11. Reposition `let` or `var` bindings within pattern
+# 12. Indent code in accordance with the scope level
+--rules duplicateImports, elseOnSameLine, emptyBraces, hoistPatternLet, indent
+# 13. Move leading delimiters to the end of the previous line
+# 14. Add empty blank line at the end of file
+# 15. Use specified linkbreak character for all linebreaks (CR, LF or CRLF)
+# See option `--linebreaks`
+# 16. Remove redundant `break` in switch case
+--rules leadingDelimiters, linebreakAtEndOfFile, linebreaks, redundantBreak
+# 17. Remove redundant access control specifiers
+# 18. Remove unneeded `get` clause inside computed properties
+# 19. Remove explicit `init` if not required
+# 20. Remove redundant `let`/`var` from ignored variables
+--rules redundantExtensionACL, redundantGet, redundantInit, redundantLet
+# 21. Remove redundant `let error` from `catch` clause
+# 22. Remove redundant `nil` default value (Optional vars are `nil` by default)
+# 23. Remove redundant `@objc` annotations
+# 24. Remove redundant parentheses
+--rules redundantLetError, redundantNilInit, redundantObjc, redundantParens
+# 25. Remove redundant raw string values for enum cases
+# 26. Remove explicit `Void` return type
+# 27. Remove semicolons. See option `--semicolons`
+# 28. Sort `import` statements alphabetically
+# See option `--importgrouping`
+--rules redundantRawValues, redundantVoidReturnType, semicolons, sortedImports
+# 29. Add or remove space around curly braces
+# 30. Add or remove space around square brackets
+# 31. Add space before and/or after comments
+--rules spaceAroundBraces, spaceAroundBrackets, spaceAroundComments
+# 32. Remove space around angle brackets
+# 33. Add or remove space around operators or delimiters
+# See option `--operatorfunc`
+# 34. Add or remove space around parentheses
+--rules spaceAroundGenerics, spaceAroundOperators, spaceAroundParens
+# 35. Add space inside curly braces
+# 36. Remove space inside square brackets
+# 37. Add leading and/or trailing space inside comments
+--rules spaceInsideBraces, spaceInsideBrackets, spaceInsideComments
+# 38. Remove space inside angle brackets
+# 39. Remove space inside parentheses
+# 40. Use consistent ordering for member specifiers
+# See option `--spcifierorder`
+# 41. Remove `weak` specifier from `@IBOutlet` properties
+--rules spaceInsideGenerics, spaceInsideParens, specifiers, strongOutlets
+# 42. Use correct formatting for `TODO:`, `MARK:` or `FIXME:` comments
+# 43. Add or remove trailing comma from the last item in a collection literal
+# See option `--commas`
+# 44. Remove trailing space at end of a line
+# See option `--trimwhitespace`
+# 45. Prefer shorthand syntax for Arrays, Dictionaries and Optionals
+# See option `--shortoptionals`
+# 46. Mark unused function arguments with `_`
+# See option `--stripunusedargs`
+# 47. Use `Void` for type declarations and `()` for values
+# See option `--empty`
+--rules todos, trailingCommas, trailingSpace, typeSugar, unusedArguments, void
+# 48. Wrap lines that exceed the specified maximum width
+# See options `--maxwidth` and `--nowrapoperators`
+# 49. Align wrapped function arguments or collection elements
+# See options `--closingparen`, `--wraparguments`, `--wrapcollections`
+# and `--wrapparameters`
+# 50. Prefer constant values to be on the right-hand-side of expressions
+--rules wrap, wrapArguments, yodaConditions
+
+# 234567891123456789212345678931234567894123456789512345678961234567897123456789
+
+
+# OPTIONS
+# #
+--allman false
+--indent 2
+#--indentcase false # (default)
+--linebreaks lf # `cr`, `crlf` or `lf` (default)
+--semicolons never # Allow semicolons: `never` or `inline` (default)
+# `testable-top` `testable-bottom` or `alphabetized` (default)
+--importgrouping testable-bottom 
+# Spacing for operator funcs: `spaced` (default) or `no-space`
+--operatorfunc spaced
+#--specifierorder # Comma-delimited list of specifiers in preferred order
+# Comma-delimited list of functions that use trailing closures
+#--trailingclosures
+--commas always # Commas in collection literals: `always` (default) or `inline`
+# Trim trailing space: `always` (default) or `noblank-lines`
+--trimwhitespace always 
+# Use `?` for Optionals `always` (default) or `except-properties`
+--shortoptionals always
+# `closure-only`, `unnamed-only` or `always` (default)
+--stripunusedargs closure-only
+--empty void # How empty values are represented: `void` (default) or `tuple`
+--maxwidth 80 # Maximum length of a line before wrapping. Defaults to `none`
+# Comma-delimited list of operators that shouldn't be wrapped
+#--nowrapoperators 
+# Closing paren position: `balanced` (default) or `same-line`
+--closingparen balanced 
+# Wrap all arguments: `before-first`, `after-first`, `preserve`
+--wraparguments preserve
+# Wrap Arrays/Dictionaries: `before-first`, `after-first`, `preserve`
+--wrapcollections preserve
+# Wrap function parameters: `before-first`, `after-first`, `preserve`
+--wrapparameters preserve
+
+
+# UNAPPLIED RULES
+#
+# Prefer `AnObject` over `class` in protocol definitions
+# NOTE: Only if swift version is set to 4.1 or above
+#--rules anyObjectProtocol
+# Insert blank line before and after `MARK:` comments
+#--rules blankLinesAroundMark 
+#--rules fileHeader
+#--rules isEmpty # .count == 0  TO  .isEmpty
+#--rules numberFormatting
+#--rules ranges # Add or remove space around range operators
+#--rules redundantBackticks # Remove redundant backticks around identifiers
+# Prefer `private` over `fileprivate` where equivalent
+#--rules redundantFileprivate 
+# Remove redundant pattern matching parameter syntax
+#--rules redundatPattern
+# Remove unneeded `return` keyword
+#--rules redundantReturn
+# Remove backticks around `self` in Optional unwrap expressions
+#--rules strongifiedSelf
+# Use trailing closure syntax where applicable
+# See option `--trailingclosures`
+#--rules trailingColosures
+
