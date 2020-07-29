@@ -1,3 +1,7 @@
 ## macOS Env
 .DS_Store
 
+Desktop.ini
+*.ini
+Thumbs.db
+
