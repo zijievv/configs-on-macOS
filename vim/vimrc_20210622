@@ -1,0 +1,192 @@
+set nocompatible
+filetype off " required
+
+" Set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"-------------------------------------------------
+" alternatively, pass a path where Vundle should install plugins
+" call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+""Plugin 'file:///home/gmarik/path/to/plugin'
+
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+"Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" indentline 锁进指示线
+Plugin 'Yggdroot/indentLine'
+
+" NERDTree
+Plugin 'scrooloose/nerdtree'
+
+" Python 缩进 PEP8
+Plugin 'vim-scripts/indentpython.vim'
+" Python auto form PEP8
+Plugin 'tell-k/vim-autopep8'
+
+" 代码检查工具 ale
+Plugin 'w0rp/ale'
+
+" Swift 语法高亮
+Plugin 'keith/swift.vim'
+
+" YouCompleteMe
+Plugin 'Valloric/YouCompleteMe'
+
+" 自动补全括号
+Plugin 'jiangmiao/auto-pairs'
+
+"-------------------------------------------------
+" All of your Plugins must be added before the following line
+call vundle#end()			" required
+filetype plugin indent on
+"
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+"======================================================
+
+"/// Basic
+syntax enable
+syntax on
+
+set showmode
+set showcmd
+set laststatus=1
+
+"/// GUI
+set mouse=a
+set encoding=utf-8
+set guifont=Inconsolata\ Regular:h16
+set t_Co=256
+set number
+"set relativenumber
+set cursorline
+set cursorcolumn
+set ruler
+set wrap
+set wrapmargin=0
+set textwidth=0
+set scrolloff=2
+"set sidescrolloff=15
+set linebreak
+set breakat-=_
+set breakat-=-
+set breakat+==
+set showbreak=⍜
+"Set wrap for Chinese
+"m - Also break at a multi-byte character above 255. This is useful for 
+"Asian text where every character is a word on its own.
+"M - When joining lines, don't insert a space before or after a 
+"multi-byte character. Overrules the 'B' flag.
+set formatoptions+=mM
+
+if has("gui_running")
+  augroup RCVisual
+    autocmd!
+    autocmd GUIEnter * colorscheme gruvbox
+  augroup END
+else
+  colorscheme gruvbox
+end
+
+"/// Indent
+filetype indent on
+set autoindent
+set cindent
+set smartindent
+set tabstop=2
+set shiftwidth=2
+set expandtab " change tab to space
+set softtabstop=2
+autocmd FileType python set tabstop=4 | set shiftwidth=4 | set softtabstop=4 | set expandtab | set autoindent 
+
+"/// Search
+set showmatch
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+"/// Edit
+"set spell spelllang=en_us
+set backup
+set noswapfile
+set undofile
+set backupdir=~/.vim/.backup//
+set directory=~/.vim/.swap//
+set undodir=~/.vim/.undo//
+set autochdir
+set noerrorbells
+"set visualbell
+set history=1000
+set autoread
+set autowrite
+set confirm
+set fenc=utf-8    " decode
+set clipboard+=unnamed
+set iskeyword+=_,$,@,%,#,-
+set backspace=indent,eol,start
+
+
+set wildmenu
+set wildmode=longest:list,full
+
+
+"=======================================================
+"--------------======= For plugins =======--------------
+"=======================================================
+
+"/// ale
+" 代码检查工具 ale
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+let g:ale_sign_column_always = 1
+let g:airline#extensions#ale#enabled = 1
+
+"///YouCompleteMe
+set completeopt=longest,menu                    " 让Vim的补全菜单行为与一般IDE
+let g:ycm_min_num_of_chars_for_completion=2             " 从第2个键入字符就开始罗列匹配项
+let g:ycm_cache_omnifunc=0                      " 禁止缓存匹配项,每次都重新生成匹配项
+let g:ycm_autoclose_preview_window_after_completion=1       " 智能关闭自动补全窗口
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif         " 离开插入模式后自动关闭预览窗口
+" 开启各种补全引擎
+let g:ycm_collect_identifiers_from_tags_files=1         " 开启 YCM 基于标签引擎
+let g:ycm_auto_trigger = 1                  " 开启 YCM 基于标识符补全，默认为1
+let g:ycm_seed_identifiers_with_syntax=1                " 开启 YCM 基于语法关键字补全
+let g:ycm_complete_in_comments = 1              " 在注释输入中也能补全
+let g:ycm_complete_in_strings = 1               " 在字符串输入中也能补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 0 " 注释和字符串中的文字也会被收入补全
+let g:ycm_confirm_extra_conf=0                  " 关闭加载.ycm_extra_conf.py确认提示
+
+"//indentline
+" support any ascii-code (only utf-8)
+let g:indentLint_char='¦' 
+" turn on indentline
+let g:indentLine_enabled = 1
+
