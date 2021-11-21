@@ -8,7 +8,7 @@
     "Alpha Component" : 1,
     "Green Component" : 0.5310559868812561
   },
-  "Rows" : 26,
+  "Rows" : 29,
   "Ansi 11 Color" : {
     "Red Component" : 0.80126690864562988,
     "Color Space" : "Calibrated",
@@ -65,6 +65,7 @@
             "base: compression resistance" : 1,
             "iTermStatusBarGitComponentPollingIntervalKey" : 2,
             "base: priority" : 5,
+            "minwidth" : 0,
             "shared text color" : {
               "Red Component" : 0.5,
               "Color Space" : "sRGB",
@@ -72,7 +73,6 @@
               "Alpha Component" : 1,
               "Green Component" : 0.25
             },
-            "minwidth" : 0,
             "maxwidth" : 1.7976931348623157e+308
           },
           "layout advanced configuration dictionary value" : {
@@ -379,7 +379,7 @@
   "Ansi 9 Color" : {
     "Red Component" : 0.74529051780700684,
     "Color Space" : "Calibrated",
-    "Blue Component" : 0.090684391558170319,
+    "Blue Component" : 0.090684391558170346,
     "Alpha Component" : 1,
     "Green Component" : 0.05879192054271698
   },
@@ -423,7 +423,7 @@
   "Ansi 10 Color" : {
     "Red Component" : 0.52591603994369507,
     "Color Space" : "Calibrated",
-    "Blue Component" : 0.082894742488861084,
+    "Blue Component" : 0.082894742488861112,
     "Alpha Component" : 1,
     "Green Component" : 0.53061914443969727
   },
@@ -449,10 +449,10 @@
     "Color Space" : "Calibrated",
     "Blue Component" : 0.097711890935897827,
     "Alpha Component" : 1,
-    "Green Component" : 0.095032960176467896
+    "Green Component" : 0.095032960176467923
   },
   "Blur" : false,
-  "Normal Font" : "JetBrainsMono-Medium 14",
+  "Normal Font" : "Menlo-Regular 14",
   "Vertical Spacing" : 1,
   "Ansi 7 Color" : {
     "Red Component" : 0.97939503192901611,
@@ -499,7 +499,7 @@
     "Alpha Component" : 1,
     "Green Component" : 0.29604318737983704
   },
-  "Columns" : 104,
+  "Columns" : 106,
   "Visual Bell" : true,
   "Custom Directory" : "No",
   "Ansi 5 Color" : {
