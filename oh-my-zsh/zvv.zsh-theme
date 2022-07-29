@@ -39,7 +39,18 @@ if [[ -n $(git_prompt_info) ]]; then
 echo "$indicator_color❮ \
 $(git_prompt_short_sha) \
 $(git_prompt_info) \
-$(git_prompt_status) "
+$(git_prompt_status)"
+fi
+}
+
+function git_user_name_prefix() {
+if [[ -n $(git_prompt_info) ]]; then
+echo " Ψ"
+fi
+}
+function git_user_name() {
+if [[ -n $(git_prompt_info) ]]; then
+echo "$(git_current_user_name) "
 fi
 }
 
@@ -47,7 +58,9 @@ local indicator_color="%(?,%{$bcyan%},%{$bred%})"
 local exit_code="%(?,, %{$bgred%}%{$bwhite%}%?%{$reset_color%})"
 
 PROMPT='$indicator_color❮%{$reset_color%} \
-%{$byellow%}%n%{$bred%}@%{$green%}$HOST%{$white%}: \
+%{$byellow%}%n%{$bred%}@%{$green%}$HOST\
+%{$white%}: \
 %{$bwhite%}%~%{$reset_color%}$exit_code
 $(git_info)\
+%{$bblue%}$(git_user_name_prefix)%{$byellow%}$(git_user_name)\
 $indicator_color❯%{$reset_color%} '
